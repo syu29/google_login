@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <meta name="google-signin-client_id"content="803048416157-l5vrho0lkgqjjs9hmsvu7hb844mvuuan.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+          var id_token = googleUser.getAuthResponse().id_token;
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'test.php');
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.onload = function() {
+              console.log('Signed in as: ' + xhr.responseText);
+          };
+          xhr.send('idtoken=' + id_token);
+          window.location.href = 'index.php';
+      }
+  </script>
+  </body>
+</html>
+
+<!-- client_id -->
+<!-- 803048416157-l5vrho0lkgqjjs9hmsvu7hb844mvuuan.apps.googleusercontent.com -->
+<!-- secret_id -->
+<!-- 3ZYxpTZeMSZYluvelxx8tJvP -->
